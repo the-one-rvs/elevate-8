@@ -71,10 +71,8 @@ The Docker image is available at:
 ## Screenshots
 
 ### ScreenShots
-![Jenkins Pipeline](screenshots/jenkins-pipeline.png)
+![SS](SS/Screenshot%20from%202025-04-18%2011-53-42.png)
 
-![Docker Build](screenshots/docker-build.png)
+![SS](SS/Screenshot%20from%202025-04-18%2011-53-52.png)
 
-![Application](screenshots/app-running.png)
-
-![Jenkins Tools](screenshots/jenkins-tools.png)
+![SS](SS/Screenshot%20from%202025-04-18%2011-54-05.png)
