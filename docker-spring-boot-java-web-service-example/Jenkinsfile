@@ -5,12 +5,6 @@ pipeline {
         maven 'jenkins-maven'
         
     }
-
-    triggers {
-        githubPush()  
-        pollSCM('* * * * *')
-    }
-
     environment {
         JAVA_HOME = tool 'OpenJDK9'
         PATH = "${JAVA_HOME}/bin:${PATH}"
@@ -19,7 +13,7 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                git changelog: false, poll: false, url: 'https://github.com/the-one-rvs/elevate-8.git'
+                git changelog: false, poll: false, url: 'https://github.com/the-one-rvs/docker-spring-boot-java-web-service-example'
             }
         }
         stage('Build Maven') {
@@ -27,17 +21,13 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage ('Docker build') {
-            steps {
-                sh "docker build -t quasarcelestio/java-example:latest . "
-            }
-        }
-        stage('Docker Push to Docker Hub') {
+        stage('Docker build and run') {
             steps {
                 script{
-                    withDockerRegistry(credentialsId: 'dockerhubcred') {
+                    withDockerRegistry(credentialsId: 'docker-hub-credentials') {
                         // some block
-                        sh "docker push  quasarcelestio/java-example:latest"
+                        sh "docker build -t quasarcelestio/example:latest . "
+                        sh "docker push  quasarcelestio/example:latest"
                     }
                 }
             }
