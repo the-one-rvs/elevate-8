@@ -11,6 +11,11 @@ pipeline {
         pollSCM('* * * * *')
     }
 
+    environment {
+        JAVA_HOME = tool 'OpenJDK8'
+        PATH = "${JAVA_HOME}/bin:${PATH}"
+    }
+
     stages {
         stage('SCM') {
             steps {
