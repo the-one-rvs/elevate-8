@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools{
-        jdk 'OpenJDK8'
+        jdk 'OpenJDK9'
         maven 'jenkins-maven'
         
     }
@@ -11,10 +11,10 @@ pipeline {
         pollSCM('* * * * *')
     }
 
-    // environment {
-    //     JAVA_HOME = tool 'OpenJDK8'
-    //     PATH = "${JAVA_HOME}/bin:${PATH}"
-    // }
+    environment {
+        JAVA_HOME = tool 'OpenJDK9'
+        PATH = "${JAVA_HOME}/bin:${PATH}"
+    }
 
     stages {
         stage('SCM') {
